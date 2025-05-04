@@ -1,0 +1,40 @@
+<form>
+    <fieldset>
+        <legend>Registrering/Logga in</legend>
+        <label>
+            <span>Användarnamn:</span>
+            <input type="text" name="username" autocomplete="username" [value]="username()"
+                (input)="username.set($any($event.target).value)" (input)="usernameTouched.set(true)">
+        </label>
+        @if (usernameTouched() && usernameError()) {
+            <ul class="error">
+            @for (error of usernameError(); track error.id) {
+                <li>
+                    {{error.message}}
+                </li>
+            }
+            </ul>
+        }
+        <label>
+            <span>Lösenord:</span>
+            <input type="password" name="password" autocomplete="current-password" [value]="password()"
+                (input)="password.set($any($event.target).value)" (input)="passwordTouched.set(true)">
+        </label>
+        @if (passwordTouched() && passwordError()) {
+            <ul class="error">
+            @for (error of passwordError(); track error.id) {
+                <li>
+                    {{error.message}}
+                </li>
+            }
+            </ul>
+        }
+        @if (serverError) {
+        <div class="error">
+            <p>{{serverError}}</p>
+        </div>
+        }
+        <button type="button" (click)="onLogin()" [disabled]="!isFormValid()">Logga in</button>
+        <button type="button" (click)="onRegister()" [disabled]="!isFormValid()">Registrera</button>
+    </fieldset>
+</form>
