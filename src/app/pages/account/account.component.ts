@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -14,7 +15,7 @@ export class AccountComponent {
   passwordTouched = signal<boolean>(false);
   serverError: string = "";
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   /**
    * Sammlar felmeddelanden för inmatning för användarnamn.
@@ -45,6 +46,10 @@ export class AccountComponent {
     return errors;
   });
 
+  /**
+   * Kollar om formuläret är korrekt.
+   * @returns boolean
+   */
   public isFormValid(): boolean {
     return this.usernameError().length == 0 && this.passwordError().length == 0;
   }
@@ -56,7 +61,8 @@ export class AccountComponent {
     if (this.isFormValid()) {
       this.authService.register({username: this.username(), password: this.password()}).subscribe({
         next: res => {
-          console.log("Registreringen lyckades.", res);
+          console.log("Registreringen lyckades.", res.message);
+          this.onLogin();
         },
         error: error => {
           console.log(error.error);
@@ -75,6 +81,7 @@ export class AccountComponent {
         next: res => {
           this.authService.setToken(res.token);
           console.log("Inloggningen lyckades.");
+          this.router.navigate(["terraria_bosses"]);
         },
         error: error => {
           console.log(error.error.message);

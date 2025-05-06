@@ -5,7 +5,7 @@ export interface Boss {
         expert: string;
         master: string;
     };
-    heatlh: {
+    health: {
         classic: string;
         expert: string;
         master: string;
@@ -16,4 +16,5 @@ export interface Boss {
         master: string;
     };
     environment: Array<string>;
+    rowID?: number;
 }

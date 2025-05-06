@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Data } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Credentials } from '../models/credentials';
 
@@ -8,8 +7,7 @@ import { Credentials } from '../models/credentials';
   providedIn: 'root'
 })
 export class AuthService {
-  private url: string = "https://dt207g-moment4-backend.onrender.com/api";
-
+  private url: string = "https://dt207g-moment4-backend.fly.dev/api";
   constructor(private http: HttpClient) { }
 
   /**
@@ -43,20 +41,5 @@ export class AuthService {
    */
   public getToken(): string | null {
     return localStorage.getItem("token");
-  }
-
-  /**
-   * Raderar token från localStorage.
-   */
-  public logOut(): void {
-    localStorage.removeItem("token");
-  }
-
-  /**
-   * Kollar om användaren är inloggad.
-   * @returns boolean
-   */
-  public isLoggedIn(): boolean {
-    return !!this.getToken();
   }
 }

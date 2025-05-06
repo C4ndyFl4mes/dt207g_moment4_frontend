@@ -1,1 +1,70 @@
-<p>terraria-bosses works!</p>
+<div>
+    @if (loggedIn()) {
+    <div class="controls">
+        <app-switch-difficulty-mode (radio)="changeDifficulty($event)"></app-switch-difficulty-mode>
+    </div>
+    <div class="list-container">
+        @if (bosses.length > 0) {
+        @for (boss of bosses; track boss.rowID) {
+        <article>
+            <h3>{{boss.name}}</h3>
+           @if (current_difficulty() == "classic") {
+            <p>
+                <strong>Health:</strong>
+                <span>{{boss.health.classic}}</span>
+            </p>
+            <p>
+                <strong>Defense:</strong>
+                <span>{{boss.defense.classic}}</span>
+            </p>
+            <p>
+                <strong>Damage:</strong>
+                <span>{{boss.damage.classic}}</span>
+            </p>
+           } @else if (current_difficulty() == "expert") {
+            <p>
+                <strong>Health:</strong>
+                <span>{{boss.health.expert}}</span>
+            </p>
+            <p>
+                <strong>Defense:</strong>
+                <span>{{boss.defense.expert}}</span>
+            </p>
+            <p>
+                <strong>Damage:</strong>
+                <span>{{boss.damage.expert}}</span>
+            </p>
+           } @else if (current_difficulty() == "master"){
+            <p>
+                <strong>Health:</strong>
+                <span>{{boss.health.master}}</span>
+            </p>
+            <p>
+                <strong>Defense:</strong>
+                <span>{{boss.defense.master}}</span>
+            </p>
+            <p>
+                <strong>Damage:</strong>
+                <span>{{boss.damage.master}}</span>
+            </p>
+           }
+           <div>
+            <strong>Environment:</strong>
+            <ul>
+                @for (environment of boss.environment; track environment) {
+                    <li>{{environment}}</li>
+                }
+               </ul>
+            </div>
+        </article>
+        }
+        }
+    </div>
+    } @else {
+        <div class="not-logged-in">
+            <h3>Du är inte inloggad!</h3>
+            <button (click)="toLoginPage()">Logga in</button>
+
+        </div>
+    }
+</div>
