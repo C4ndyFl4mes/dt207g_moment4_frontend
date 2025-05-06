@@ -16,6 +16,9 @@ export class AccountComponent {
 
   constructor(private authService: AuthService) {}
 
+  /**
+   * Sammlar felmeddelanden för inmatning för användarnamn.
+   */
   usernameError = computed(() => {
     const value = this.username;
     const errors: Array<{id: number; message: string;}> = [];
@@ -26,6 +29,9 @@ export class AccountComponent {
     return errors;
   });
 
+  /**
+   * Sammlar felmeddelanden för inmatning för lösenord.
+   */
   passwordError = computed(() => {
     const value = this.password;
     const errors: Array<{id: number; message: string;}> = [];
@@ -43,7 +49,9 @@ export class AccountComponent {
     return this.usernameError().length == 0 && this.passwordError().length == 0;
   }
 
-  
+  /**
+   * Registrerar en användare.
+   */
   public onRegister(): void {
     if (this.isFormValid()) {
       this.authService.register({username: this.username(), password: this.password()}).subscribe({
@@ -58,6 +66,9 @@ export class AccountComponent {
     }
   }
 
+  /**
+   * Loggar in en användare.
+   */
   public onLogin(): void {
     if (this.isFormValid()) {
       this.authService.login({username: this.username(), password: this.password()}).subscribe({
