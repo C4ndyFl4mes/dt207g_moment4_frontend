@@ -1,0 +1,125 @@
+@use 'sass:color';
+$navigation-bg-color: rgba(0, 0, 0, 0.9);
+$menu-main-bg-color: black;
+$menu-bg-color: rgba(113, 225, 253, 0.7); 
+$menu-hover-bg-color: color.adjust($menu-bg-color, $alpha: 0.09%);
+$menu-active-bg-color: color.adjust($menu-bg-color, $alpha: 0.2%);
+$menu-border-color: rgba(255, 215, 0, 0.2);
+$menu-text-color: black;
+$button-bg-color: rgb(113, 225, 253);
+$button-hover-bg-color: color.adjust($button-bg-color, $lightness: -5%);
+$button-active-bg-color: color.adjust($button-bg-color, $lightness: -10%);
+
+
+.navigation-container {
+    position: absolute;
+    top: 100%;
+    background-color: $navigation-bg-color;
+    
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navigation-container:has(.open) {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+nav {
+    display: grid;
+    width: 95%;
+    // padding-bottom: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        background-color: $menu-main-bg-color;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        height: 3rem;
+        background-color: $menu-bg-color;
+        border-left: 5px groove $menu-border-color;
+        border-top: 5px groove $menu-border-color;
+        border-bottom: 5px ridge $menu-border-color;
+        border-right: 5px ridge $menu-border-color;
+        display: flex;
+        flex-direction: column;
+        transition: 0.3s;
+        a {
+            text-decoration: none; 
+            color: $menu-text-color;
+            font-weight: 700;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    li:first-child {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+    }
+    li:last-child {
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+    li:hover {
+        background-color: $menu-hover-bg-color;
+    }
+}
+li:has(.active) {
+    background-color: $menu-active-bg-color !important;
+    box-shadow: 0px 2px 12px black;
+    font-size: 1.1rem;
+    z-index: 1;
+}
+.open {
+    max-height: 12rem;
+    padding-bottom: 1rem;
+}
+.button {
+    height: 2rem;
+    background-color: $button-bg-color;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: $button-hover-bg-color;
+}
+.button:active {
+    background-color: $button-active-bg-color;
+}
+
+@media screen and (min-width: 500px) {
+    .button {
+        display: none !important;
+    }
+    nav {
+        max-width: 70%;
+        max-height: none;
+        ul {
+            flex-direction: row;
+        }
+        li {
+            flex: 1;
+            border-radius: 0 !important;
+        }
+    }
+    .open {
+        padding-bottom: 0;
+    }
+    .navigation-container:has(.open) {
+        border-radius: 0;
+    }
+}

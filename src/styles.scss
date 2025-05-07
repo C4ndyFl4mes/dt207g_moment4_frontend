@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$roboto: 'Roboto', Helvetica, Arial, sans-serif;
+
+html,body {
+    margin: 0;
+    font-family: $roboto;
+    
+}
+main {
+    flex: 1;
+}
+input, button {
+    font-family: $roboto;
+    font-size: 1rem;
+}
+button {
+    cursor: pointer;
+}
+
+h2 {
+    justify-self: center;
+}

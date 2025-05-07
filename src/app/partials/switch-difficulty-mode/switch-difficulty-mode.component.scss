@@ -1,0 +1,13 @@
+div {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    input {
+        cursor: pointer;
+    }
+}

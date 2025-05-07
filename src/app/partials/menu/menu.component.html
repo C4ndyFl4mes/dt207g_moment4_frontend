@@ -1,0 +1,13 @@
+<div class="navigation-container">
+    <button (click)="toggleMenu()" class="button">Meny</button>
+    <nav #menuNAV>
+        <ul>
+            <li>
+                <a routerLink="/account" routerLinkActive="active" (click)="delay()">Konto</a>
+            </li>
+            <li>
+                <a routerLink="/terraria_bosses" routerLinkActive="active" (click)="delay()">Terraria bosses</a>
+            </li>
+        </ul>
+    </nav>
+</div>

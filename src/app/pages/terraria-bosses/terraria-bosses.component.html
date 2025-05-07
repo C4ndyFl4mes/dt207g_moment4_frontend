@@ -1,4 +1,4 @@
-<div>
+<div class="frame">
     @if (loggedIn()) {
     <div class="controls">
         <app-switch-difficulty-mode (radio)="changeDifficulty($event)"></app-switch-difficulty-mode>
@@ -6,8 +6,10 @@
     <div class="list-container">
         @if (bosses.length > 0) {
         @for (boss of bosses; track boss.rowID) {
-        <article>
+        <article class="{{current_difficulty()}}">
             <h3>{{boss.name}}</h3>
+            <div class="stats">
+
            @if (current_difficulty() == "classic") {
             <p>
                 <strong>Health:</strong>
@@ -48,7 +50,8 @@
                 <span>{{boss.damage.master}}</span>
             </p>
            }
-           <div>
+        </div>
+           <div class="environment">
             <strong>Environment:</strong>
             <ul>
                 @for (environment of boss.environment; track environment) {
@@ -56,6 +59,8 @@
                 }
                </ul>
             </div>
+       
+
         </article>
         }
         }
@@ -64,7 +69,7 @@
         <div class="not-logged-in">
             <h3>Du är inte inloggad!</h3>
             <button (click)="toLoginPage()">Logga in</button>
-
+            <p>(Det kan vara att det laddas in)</p>
         </div>
     }
 </div>
