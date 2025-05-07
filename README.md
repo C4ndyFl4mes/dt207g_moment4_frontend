@@ -1,59 +1,15 @@
-# Dt207gMoment4Frontend
+# Webbapplikation
+Den här [webbsidan](https://dt207g-moment4-frontend.netlify.app/terraria_bosses) är publicerad på Netlify. Den använder ett API för att kunna hantera registrering och inloggning av konton, samt att visa information om olika Terria bosses (skyddad resurs) i en skyddad route, terrara_bosses. API:et ligger på Fly.io och NoSQL databasen ligger på Atlas.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+## Beskrivning
+Användare kan skapa ett konto och logga in med det för att kunna se den skyddade undersidan terraria_bosses samt hämta den skyddade resursen som visar information. API:ets: [repo](https://github.com/C4ndyFl4mes/dt207g-moment4-backend) [URL](https://dt207g-moment4-backend.fly.dev/). Eftersom webbapplikationen gjordes i Angular användes Auth Guard för att kunna skydda terraria_bosses och skicka användaren till en annan sida som heter forbidden. Denna sida säger att användaren inte är inloggad och en knapp till inloggningssidan finns.
 
-## Development server
+Den skyddade sidan terraria_bosses listar information från en skyddad resurs som innehåller namn, hälsa, försvar, skada och omgivningar den kan spawna i.
 
-To start a local development server, run:
+Inloggningssidan listar alla fel med ens inmatning samt särskilda fel ifall användarnamnet är upptaget eller användarnamn eller lösenord är felaktigt. Registrera/logga in knapparna aktiveras när det är korrekt inmatning i båda fälten. När användaren loggar in eller registreras och allt går bra, förflyttas användaren automatiskt till terraria_bosses.
 
-```bash
-ng serve
-```
+## Översikt av koden
+Applikationen är skriven i TypeScript, Angular. Det finns fyra interfaces (`boss`, `credentials`, `data`, `user`), tre sidor (`account`, `forbidden`, `terraria_bosses`), två partials (`menu`, `switch-difficulty-mode`) och två services (`auth`, `terraria`). Det var tänkt att `user` skulle synas på sidan: användarnamn och registreringsdatum, men jag glömde det. `boss` innehåller informationen som nämndes i beskrivningen. Ytterligare finns rowID som inte är med i den skyddade resursen, men som läggs till för att identifiera unika rader. `credentials` används bara för att slippa skriva `{username: ....; password: ....;}` två gånger i auth service. `data` är `user` + `boss` i samma, det blev riktigt dåligt med API:et gällande detta. Hade nog varit bäst att sära på dem i två olika get routes. Menyn kopierade jag från en av mina tidigare uppgifter och lade in i detta projekt. `switch-difficulty-mode` är en komponent som ligger på terraria_bosses med tre radioknappar som bestämmer vilken svårighetsgrad som ska visas: classic, expert eller master. Beroende på vilken svårighetsgrad anges olika hälsa, försvar etc.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Designen
+Jag är inte bra på att göra en design eller hur jag ska lägga upp innehållet. Jag fokuserar mest på att det ska vara responsivt och då i projekten jobbar jag lite extra på designen.
