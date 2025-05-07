@@ -1,0 +1,8 @@
+[build]
+  publish = "dist/dt207g_moment4_frontend"
+  command = "ng build --configuration production"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
