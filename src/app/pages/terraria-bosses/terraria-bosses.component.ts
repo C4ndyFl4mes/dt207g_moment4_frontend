@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth.service';
 import { Boss } from '../../models/boss';
 import { User } from '../../models/user';
 import { SwitchDifficultyModeComponent } from '../../partials/switch-difficulty-mode/switch-difficulty-mode.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-terraria-bosses',
@@ -22,7 +21,7 @@ export class TerrariaBossesComponent {
   current_difficulty = signal<string>("classic");
 
 
-  constructor(private terrariaService: TerrariaService, private authService: AuthService, private router: Router) { }
+  constructor(private terrariaService: TerrariaService, private authService: AuthService) { }
 
   /**
    * Laddar in data ifall användaren är inloggad, annars ett meddelande.
@@ -61,12 +60,5 @@ export class TerrariaBossesComponent {
    */
   public changeDifficulty(value: string) {
     this.current_difficulty.set(value);
-  }
-
-  /**
-   * Förflyttar användaren till inloggningssidan.
-   */
-  public toLoginPage(): void {
-    this.router.navigate(["account"]);
   }
 }

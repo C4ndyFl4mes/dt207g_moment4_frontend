@@ -42,4 +42,13 @@ export class AuthService {
   public getToken(): string | null {
     return localStorage.getItem("token");
   }
+
+  public isLoggedIn(): Observable<any> {
+    return this.http.get(`${this.url}/verify`, {
+      headers: {
+        "content-type": "application/xml",
+        "authorization": `Bearer ${this.getToken()}`
+      }
+    });
+  }
 }
